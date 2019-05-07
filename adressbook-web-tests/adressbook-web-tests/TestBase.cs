@@ -51,6 +51,12 @@ namespace WebAddressbookTests
             driver.FindElement(By.Name("pass")).SendKeys(account.Password);
             driver.FindElement(By.XPath("//input[@value='Login']")).Click();
         }
+
+        protected void Logout()
+        {
+            driver.FindElement(By.LinkText("Logout")).Click();
+        }
+
         protected void GoToGroupsPage()
         {
             driver.FindElement(By.LinkText("groups")).Click();
@@ -95,6 +101,25 @@ namespace WebAddressbookTests
             driver.FindElement(By.LinkText("groups")).Click();
         }
 
+        protected void InitContactCreation()
+        {
+            driver.FindElement(By.LinkText("add new")).Click();
+        }
+
+        protected void FillContactForm(ContactData contact)
+        {
+            driver.FindElement(By.Name("firstname")).Click();
+            driver.FindElement(By.Name("firstname")).Clear();
+            driver.FindElement(By.Name("firstname")).SendKeys(contact.Firstname);
+            driver.FindElement(By.Name("lastname")).Click();
+            driver.FindElement(By.Name("lastname")).Clear();
+            driver.FindElement(By.Name("lastname")).SendKeys(contact.Lastname);
+        }
+
+        protected void SubmitContactCreation()
+        {
+            driver.FindElement(By.XPath("(//input[@name='submit'])[2]")).Click();
+        }
 
         
     }
