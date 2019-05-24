@@ -106,5 +106,17 @@ namespace WebAddressbookTests
                 Create(newcontact);
             }
         }
+
+        public List<ContactData> GetContactList()
+        {
+            List<ContactData> contscts = new List<ContactData>();
+            manager.Navigator.GoToHomePage();
+            ICollection<IWebElement> elements = driver.FindElements(By.Name("entry"));
+            foreach (IWebElement element in elements)
+            {
+                contscts.Add(new ContactData(element.FindElement(By.XPath(".//td[3]")).Text, element.FindElement(By.XPath(".//td[2]")).Text));   
+            }
+            return contscts;
+        }
     }
 }
