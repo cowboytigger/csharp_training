@@ -17,6 +17,60 @@ namespace WebAddressbookTests
         {
         }
 
+        public ContactData GetContactInformationFromTable(int index)
+        {
+            manager.Navigator.GoToHomePage();
+
+            IList<IWebElement> cells = driver.FindElements(By.Name("entry"))[index]
+                .FindElements(By.TagName("td"));
+            string lastName = cells[1].Text;
+            string firstName = cells[2].Text;
+            string address = cells[3].Text;
+            string allemails = cells[4].Text;
+            string allPhones = cells[5].Text;
+            
+
+            return new ContactData(firstName, lastName)
+            {
+                Address = address,
+                AllPhones = allPhones,
+                AllEmails = allemails
+            };
+        }
+
+        public ContactData GetContactInformationFromEditForm(int index)
+        {
+            manager.Navigator.GoToHomePage();
+            InitContactModification(0);
+
+            string firstName = driver.FindElement(By.Name("firstname")).GetAttribute("Value");
+            string lastName = driver.FindElement(By.Name("lastname")).GetAttribute("Value");
+            //string address = driver.FindElement(By.Name("address")).GetAttribute("Value");
+            string address = driver.FindElement(By.Name("address")).Text;
+
+            string homePhone = driver.FindElement(By.Name("home")).GetAttribute("Value");
+            string mobilePhone = driver.FindElement(By.Name("mobile")).GetAttribute("Value");
+            string workPhone = driver.FindElement(By.Name("work")).GetAttribute("Value");
+
+            string email = driver.FindElement(By.Name("email")).GetAttribute("Value");
+            string email2 = driver.FindElement(By.Name("email2")).GetAttribute("Value");
+            string email3 = driver.FindElement(By.Name("email3")).GetAttribute("Value");
+
+            return new ContactData(firstName, lastName)
+            {
+                Address = address, 
+                HomePhone = homePhone,
+                MobilePhone = mobilePhone,
+                WorkPhone =  workPhone,
+                Email = email,
+                Email2 = email2,
+                Email3 = email3
+                
+            };
+           
+        }
+
+     
         public ContactHelper Create(ContactData contact)
         {
             InitContactCreation();
@@ -88,8 +142,12 @@ namespace WebAddressbookTests
 
         public ContactHelper InitContactModification(int index)
         {
-            driver.FindElement(By.XPath("(//img[@alt='Edit'])["+(index+1)+"]")).Click();
+            driver.FindElements(By.Name("entry"))[index]
+                .FindElements(By.TagName("td"))[7]
+                .FindElement(By.TagName("a")).Click();
             return this;
+            // driver.FindElement(By.XPath("(//img[@alt='Edit'])["+(index+1)+"]")).Click();
+            // return this;
         }
 
         public ContactHelper SubmitContactModification()
