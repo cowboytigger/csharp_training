@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using  System.Text.RegularExpressions;
+//using  System.Text.RegularExpressions;
 
 namespace WebAddressbookTests
 {
@@ -13,6 +13,11 @@ namespace WebAddressbookTests
         private string allPhones;
         private string allemails;
         private string allInfo;
+
+
+        public ContactData()
+        {
+        }
 
         public ContactData(string firstname, string lastname)
         {

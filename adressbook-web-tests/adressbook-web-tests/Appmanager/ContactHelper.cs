@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.UI;
-using System.Text.RegularExpressions;
+//using System.Text.RegularExpressions;
 
 
 namespace WebAddressbookTests 
