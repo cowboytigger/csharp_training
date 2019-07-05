@@ -37,5 +37,15 @@ namespace WebAddressbookTests
             }
             driver.FindElement(By.LinkText("groups")).Click();
         }
+
+        public void GoToGroupContactsPage(string id)
+        {
+            string groupUrl = "http://localhost/addressbook/?group="+id;
+            if (driver.Url == groupUrl)
+            {
+                return;
+            }
+            driver.Url = groupUrl;
+        }
     }
 }

@@ -13,7 +13,7 @@ namespace WebAddressbookTests
         [Test]
         public void ContactModificationTest()
         {
-            List<ContactData> oldContacts = app.Contacts.GetContactList();
+            List<ContactData> oldContacts = ContactData.GetAll();
             ContactData oldData = oldContacts[0];
 
             ContactData newData = new ContactData("Harry", "Potter");
@@ -21,7 +21,7 @@ namespace WebAddressbookTests
 
             Assert.AreEqual(oldContacts.Count, app.Contacts.GetContactCount());
 
-            List<ContactData> newContacts = app.Contacts.GetContactList();
+            List<ContactData> newContacts = ContactData.GetAll();
             oldContacts[0] = newData;
             oldContacts.Sort();
             newContacts.Sort();
